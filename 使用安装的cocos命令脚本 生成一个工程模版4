@@ -1,0 +1,36 @@
+使用安装的cocos命令脚本 生成一个工程模版
+
+macserver1:cocos2d-x admindyn$ cocos new MyGame -p com.bjcric1.mygame -l cpp -d NEW_PROJECTS_DIR
+/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/tools/cocos2d-console/bin/cocos: line 4: shell_session_update: command not found
+Python 2.7.10
+> 拷贝模板到 /Users/admindyn/Desktop/cocos2d-x/cocos2d-x/NEW_PROJECTS_DIR/MyGame
+> 拷贝 cocos2d-x ...
+> 替换文件名中的工程名称，'HelloCpp' 替换为 'MyGame'。
+> 替换文件中的工程名称，'HelloCpp' 替换为 'MyGame'。
+> 替换工程的包名，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.mygame'。
+> 替换 Mac 工程的 Bundle ID，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.mygame'。
+> 替换 iOS 工程的 Bundle ID，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.mygame'。
+/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/tools/cocos2d-console/bin/cocos: line 27: shell_session_update: command not found
+
+这里出现报错 是应为 我们之前为mac安装过python3 所以 版本过高 有些命令久没有了
+
+
+解决方案  cocos 脚本是 py 脚本 而且 还是只支持python2 的版本
+
+因此 安装 需要指明 使用的python的版本
+
+
+macserver1:~ admindyn$ cd Desktop/cocos2d-x/cocos2d-x/
+macserver1:cocos2d-x admindyn$ python cocos.py new HelloWorldDemo -p com.bjcric1.org -l cpp -d NEW_PROJECTS_DIR
+python: can't open file 'cocos.py': [Errno 2] No such file or directory
+macserver1:cocos2d-x admindyn$ cd tools/cocos2d-console/bin/
+macserver1:bin admindyn$ python cocos.py new HelloWorldDemo -p com.bjcric1.org -l cpp -d ~/Desktop/NEW_PROJECTS_DIR
+> 拷贝模板到 /Users/admindyn/Desktop/NEW_PROJECTS_DIR/HelloWorldDemo
+> 拷贝 cocos2d-x ...
+> 替换文件名中的工程名称，'HelloCpp' 替换为 'HelloWorldDemo'。
+> 替换文件中的工程名称，'HelloCpp' 替换为 'HelloWorldDemo'。
+> 替换工程的包名，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.org'。
+> 替换 Mac 工程的 Bundle ID，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.org'。
+> 替换 iOS 工程的 Bundle ID，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.org'。
+macserver1:bin admindyn$ 
+
