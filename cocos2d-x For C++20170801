@@ -1,0 +1,49 @@
+cocos2d-x For C++ 
+
+cocos2d-x官网 无法访问 采用的方法 到github
+
+https://github.com/cocos2d/cocos2d-x
+mac 下 安装
+
+macserver1:~ admindyn$ cd /Users/admindyn/Desktop/cocos2d-x 
+macserver1:cocos2d-x admindyn$ git clone https://github.com/cocos2d/cocos2d-x.git
+Cloning into 'cocos2d-x'...
+remote: Counting objects: 434382, done.
+remote: Total 434382 (delta 0), reused 0 (delta 0), pack-reused 434382
+Receiving objects: 100% (434382/434382), 882.61 MiB | 435.00 KiB/s, done.
+Resolving deltas: 100% (295109/295109), done.
+Checking out files: 100% (6365/6365), done.
+macserver1:cocos2d-x admindyn$ python download-deps.py
+python: can't open file 'download-deps.py': [Errno 2] No such file or directory
+macserver1:cocos2d-x admindyn$ cd cocos2d-x/
+macserver1:cocos2d-x admindyn$ python download-deps.py
+=======================================================
+==> Prepare to download external libraries!
+==> version file doesn't exist
+==> Ready to download 'v3-deps-134.zip' from 'https://github.com/cocos2d/cocos2d-x-3rd-party-libs-bin/archive/v3-deps-134.zip'
+==> WARNING: Couldn't grab the file size from remote, use 'zip_file_size' section in '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/external/config.json'
+==> Start to download, please wait ...
+==> Downloading finished!                                                    
+==> Extracting files, please wait ...
+==> Extraction done!
+==> Cleaning cocos2d-x/external folder ...
+==> Copying files...
+==> Cleaning...
+==> Would you like to save 'v3-deps-134.zip'? So you don't have to download it later. [Yes/no]: Yes
+==> Saving the dependency libraries by default
+macserver1:cocos2d-x admindyn$ git submodule update --init
+Submodule 'plugin' (https://github.com/cocos2d-x/plugin-x.git) registered for path 'plugin'
+Submodule 'tests/cpp-tests/Resources/ccs-res' (git://github.com/dumganhar/ccs-res.git) registered for path 'tests/cpp-tests/Resources/ccs-res'
+Submodule 'tools/bindings-generator' (git://github.com/cocos2d/bindings-generator.git) registered for path 'tools/bindings-generator'
+Submodule 'tools/cocos2d-console' (git://github.com/cocos2d/cocos2d-console.git) registered for path 'tools/cocos2d-console'
+Submodule 'web' (git://github.com/cocos2d/cocos2d-html5.git) registered for path 'web'
+Cloning into '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/plugin'...
+Cloning into '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/tests/cpp-tests/Resources/ccs-res'...
+Cloning into '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/tools/bindings-generator'...
+Cloning into '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/tools/cocos2d-console'...
+Cloning into '/Users/admindyn/Desktop/cocos2d-x/cocos2d-x/web'...
+Submodule path 'plugin': checked out '0fb74e5ad6d5ffd8a4a243b0bfbfac4edc59098f'
+Submodule path 'tests/cpp-tests/Resources/ccs-res': checked out '5d65db4c5f18c0df1305ff32b076425ab228cc4a'
+Submodule path 'tools/bindings-generator': checked out '3d7c67d5ff722df97455b67e32638adf2cc0130d'
+Submodule path 'tools/cocos2d-console': checked out '1efba5ecb636ec499dc97e6cda2150301c90782d'
+Submodule path 'web': checked out '15704c33421bbd236299b6b965e63eb2a6b7172c'
