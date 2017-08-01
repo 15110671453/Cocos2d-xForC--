@@ -34,3 +34,16 @@ macserver1:bin admindyn$ python cocos.py new HelloWorldDemo -p com.bjcric1.org -
 > 替换 iOS 工程的 Bundle ID，'org.cocos2dx.hellocpp' 替换为 'com.bjcric1.org'。
 macserver1:bin admindyn$ 
 
+
+
+
+参数说明：
+
+HelloWorldDemo为项目名称
+-p后面接包名
+-l后面接开发语言类型，有cpp, lua, js三种类型
+-d后面接项目存放的目录
+##运行项目
+
+项目创建完成后，用Xcode打开HelloWorldDemo/proj.ios_mac里的Xcode项目文件，运行项目
+
