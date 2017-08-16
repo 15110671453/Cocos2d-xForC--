@@ -1,0 +1,104 @@
+memset函数用法
+
+#include<mem.h> 
+void* memset(void* s, int c, size_t n)
+{
+    unsignedchar* p = (unsigned char*) s;
+    while (n> 0) {
+    *p++ =(unsigned char) c;
+    --n;
+    }
+    returns;
+} 
+memset()的函数， 它可以一字节一字节地把整个数组设置为一个指定的值。
+memset()函数在mem.h头文件中声明，它把数组的起始地址作为其第一个参数，第二个参数是设置数组每个字节的值，第三个参数是数组的长度(字节数，不是元素个数)。
+
+其函数原型为：
+　　　　void *memset(void*，int，unsigned)；
+　　其中void*表示地址。
+　　例如，下面的代码用数组做参数传递给标准函数memset()，以让其将数组设置成全0：
+　　　　#include<mem.h>
+　　　　void main()
+　　　　{
+　　　　　int ia1[50]；
+　　　　　int ia2[500]；
+　　　　　memset(iai,0,50*sizeof(int))；
+　　　　　memset(ia2,0,500*sizeof(int))；
+　　　　　//
+　　　　}
+　　memset()的第一个实参是数组名，数组名作参数即数组作参数，它仅仅只是一个数组的起始地址而已。
+　　在函数memset()栈区，从返回地址往上依次为第1，2，3个参数。第1个参数中的内容是main()函数中定义的数组ia1的起始地址。第2个参数是给数组设置的值(0)，第3个参数是数组的长度(50*2)。函数返回时，main()函数的数组中内容全置为0。
+栈
+0 &&image.height>0){if(image.width>=700){this.width=700;this.height=image.height*700/image.width;}}">
+
+ 
+1。void*memset(void *s,int c,size_t n)
+总的作用：将已开辟内存空间 s 的首 n 个字节的值设为值 c。
+
+2。例子
+＃include
+
+voidmain(){
+char*s="Golden Global View";
+
+clrscr();
+
+memset(s,'G',6);
+printf("%s",s);
+
+getchar();
+return0;
+}　
+3。memset() 函数常用于内存空间初始化。如：
+charstr[100];
+memset(str,0,100);
+
+4。memset()的深刻内涵：用来对一段内存空间全部设置为某个字符，一般用在对定义的字符串进行初始化为‘’或‘\0’；例:char a[100];memset(a, '\0', sizeof(a));
+
+memcpy用来做内存拷贝，你可以拿它拷贝任何数据类型的对象，可以指定拷贝的数据长度；例：chara[100],b[50]; memcpy(b, a,sizeof(b));注意如用sizeof(a)，会造成b的内存地址溢出。
+
+strcpy就只能拷贝字符串了，它遇到'\0'就结束拷贝；例：chara[100],b[50];strcpy(a,b);如用strcpy(b,a)，要注意a中的字符串长度（第一个‘\0’之前）是否超过50位，如超过，则会造成b的内存地址溢出。
+
+5.补充：一点心得
+memset可以方便的清空一个结构类型的变量或数组。
+
+如：
+structsample_struct
+{
+charcsName[16];
+intiSeq;
+intiType;
+};
+
+对于变量
+structsample_strcut stTest;
+
+一般情况下，清空stTest的方法：
+stTest.csName[0]='\0';
+stTest.iSeq=0;
+stTest.iType=0;
+
+用memset就非常方便：
+memset(&stTest,0,sizeof(structsample_struct));
+
+如果是数组：
+structsample_struct TEST[10];
+则
+memset(TEST,0,sizeof(structsample_struct)*10);
+
+6。strcpy
+原型：externchar *strcpy(char *dest,char *src);
+用法：＃include
+功能：把src所指由NULL结束的字符串复制到dest所指的数组中。
+说明：src和dest所指内存区域不可以重叠且dest必须有足够的空间来容纳src的字符串。
+返回指向dest的指针。
+memcpy
+原型：externvoid *memcpy(void *dest, void *src, unsigned intcount);
+用法：＃include
+功能：由src所指内存区域复制count个字节到dest所指内存区域。
+说明：src和dest所指内存区域不能重叠，函数返回指向dest的指针。
+memset
+原型：externvoid *memset(void *buffer, int c, int count);
+用法：＃include
+功能：把buffer所指内存区域的前count个字节设置成字符c。
+说明：返回指向buffer的指针。 

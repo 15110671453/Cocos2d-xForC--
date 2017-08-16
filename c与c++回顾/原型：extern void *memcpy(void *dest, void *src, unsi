@@ -1,0 +1,62 @@
+原型：extern void *memcpy(void *dest, void *src, unsigned int count);
+用法：#include <string.h>
+功能：由src所指内存区域复制count个字节到dest所指内存区域。
+说明：src和dest所指内存区域不能重叠，函数返回指向dest的指针。
+举例：
+      // memcpy.c
+     
+      #include <syslib.h>
+      #include <string.h>
+      main()
+      {
+        char *s="Golden Global View";
+        char d[20];
+       
+        clrscr();
+       
+        memcpy(d,s,strlen(s));
+        d[strlen(s)]=0;
+        printf("%s",d);
+        getchar();
+        return 0;
+      }
+http://www.ggv.com.cn/forum/clib/string/memcpy.html此链接有许多字符串函数可以查询。
+看下面这个代码：
+void *memcpy(void *dest,void *src, unsigned int count)
+{
+assert((dest!=NULL)&&(src!=NULL));
+if(dest==src)
+return src;
+char* d=(char*)dest;
+char* s=(char*)src;
+while(count--> 0)
+*d++=*s++;
+return dest;
+}
+这是一个memcpy的源代码，可以看看，在函数里面生成临时指针，这样不会改变原始指针
+函数原型：extern void *memmove(void *dest, const void *src, unsigned int count)
+参数说明：dest为目的字符串，src为源字符串，count为要拷贝的字节数。
+       
+所在库名：#include <string.h>
+函数功能：将字符串src中的前n个字节拷贝到dest中。
+返回说明：src和dest所指内存区域可以重叠，函数返回void*类型指针。 www.yueluo.NET
+其它说明：功能于memcpy相同。
+不同的是,当src和dest所指的内存区域重叠时,memmove()仍然可以正确的处理,不过执行效率上会比使用memcpy()略慢些
+memcpy()、 memmove()和memccpy()
+-------------------------------------------------------
+    这三个函数的功能均是将某个内存块复制到另一个内存块。前两个函数的区别在于它们处理内存区域重叠(overlapping)的方式不同。第三个函数的功能也是复制内存，但是如果遇到某个特定值时立即停止复制。
+    对于库函数来说，由于没有办法知道传递给他的内存区域的情况，所以应该使用memmove()函数。通过这个函数，可以保证不会出现任何内存块重叠问题。而对于应用程序来说，因为代码“知道”两个内存块不会重叠，所以可以安全地使用memcpy()函数。
+-------------------------------------------------------
+#include <string.h>
+#include <stdio.h>
+int main()
+{
+    char s[] = "zengxiaolong";
+    memmove(s, s+4, strlen(s)-4);
+    s[strlen(s)-4] = '\0';
+    printf("*s = %s\n", s);
+    return 0;
+}
+memcpy与strncpy区别
+    strncpy是把Num个字符从src复制到dest，但是如果遇到src字符结尾，那么复制提前结束，后面没有复制完的字符，不予以处理，当然dest，src地址不能重叠，
+    memcpy也是把Num个字符从src复制到dest，但是它是内存复制，不管是不是NULL，照样通吃
