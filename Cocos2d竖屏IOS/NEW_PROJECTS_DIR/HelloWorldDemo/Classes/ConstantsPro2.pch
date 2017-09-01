@@ -1,0 +1,105 @@
+//
+//  ConstantsPro2.pch
+//  HelloWorldDemo
+//
+//  Created by admindyn on 2017/8/11.
+//
+//
+
+#ifndef ConstantsPro2_pch
+#define ConstantsPro2_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+/*
+ 1、在c++的Template中很多地方都用到了typename与class这两个关键字，而且有时候二者可以替换，那么是不是这两个关键字完全一样呢？
+ 事实上class用于定义类，在模板引入c++后，最初定义模板的方法为：template<class T>,这里class关键字表明T是一个类型，后来为了避免class在这两个地方的使用可能给人带来混淆，所以引入了typename这个关键字，它的作用同class一样表明后面的符号为一个类型，这样在定义模板的时候就可以使用下面的方式了：      template<typename T>.在模板定义语法中关键字class与typename的作用完全一样。
+ 2、类模板与模板类的概念
+ (1) 什么是类模板
+ 一个类模板(也称为类属类或类生成类)允许用户为类定义一种模式，使得类中的某些数据成员、默认成员函数的参数、某些成员函数的返回值，能够取任意类型(包括系统预定义的和用户自定义的)。
+ 如果一个类中数据成员的数据类型不能确定，或者是某个成员函数的参数或返回值的类型不能确定，就必须将此类声明为模板，它的存在不是代表一个具体的、实际的类，而是代表着一类类。
+ (2)类模板定义
+ 定义一个类模板，一般有两方面的内容：
+ A.首先要定义类，其格式为：
+
+ template <class T>
+ class foo
+ {
+ ……
+ }
+ foo 为类名，在类定义体中，如采用通用数据类型的成员，函数参数的前面需加上T,其中通用类型T可以作为普通成员变量的类型，还可以作为const和static成员变量以及成员函数的参数和返回类型之用。例如：
+
+ template<class T>
+ class Test{
+ private:
+ T n;
+ const T i;
+ static T cnt;
+ public:
+ Test()：i(0){}
+ Test(T k);
+ ~Test(){}
+ void print();
+ T operator+(T x);
+ };
+ B. 在类定义体外定义成员函数时，若此成员函数中有模板参数存在，则除了需要和一般类的体外定义成员函数一样的定义外，还需在函数体外进行模板声明
+ 例如：
+
+ template<classT>
+ voidTest<T>::print(){
+ std::cout<<"n="<<n<<std::endl;
+ std::cout<<"i="<<i<<std::endl;
+ std::cout<<"cnt="<<cnt<<std::endl;
+ }
+ 如果函数是以通用类型为返回类型，则要在函数名前的类名后缀上"<T>".例如：
+
+ template<class T>
+ Test<T>::Test(T k)：i(k){n=k;cnt++;}
+ template<class T>
+ T Test<T>::operator+(T x){
+ return n + x;
+ }
+ C. 在类定义体外初始化const成员和static成员变量的做法和普通类体外初始化const成员和static成员变量的做法基本上是一样的，唯一的区别是需再对模板进行声明，例如
+
+ template<class T>
+ int Test<T>::cnt=0;
+ template<class T>
+ Test<T>::Test(T k):i(k){n=k;cnt++;}
+ (3)类模板的使用。类模板的使用实际上是将类模板实例化成一个具体的类，它的格式为：类名<实际的类型>.
+ 模板类是类模板实例化后的一个产物。说个形象点的例子吧。我们把类模板比作一个做饼干的模子，而模板类就是用这个模子做出来的饼干，至于这个饼干是什么味道的就要看你自己在实例化时用的是什么材料了，你可以做巧克力饼干，也可以做豆沙饼干，这些饼干的除了材料不一样外，其他的东西都是一样的了。
+ 3、函数模板和模板函数
+ (1)函数模板
+ 函数模板可以用来创建一个通用的函数，以支持多种不同的形参，避免重载函数的函数体重复设计。它的最大特点是把函数使用的数据类型作为参数。
+ 函数模板的声明形式为：
+
+ template<typename(或class) T>
+ <返回类型><函数名>(参数表)
+ {
+ 函数体
+ }
+ 其中，template是定义模板函数的关键字;template后面的尖括号不能省略;typename(或class)是声明数据类型参数标识符的关键字，用以说明它后面的标识符是数据类型标识符。这样，在以后定义的这个函数中，凡希望根据实参数据类型来确定数据类型的变量，都可以用数据类型参数标识符来说明，从而使这个变量可以适应不同的数据类型。例如：
+
+ template<typename(或class) T>
+ T fuc(T x, T y)
+ {
+ T x;
+ //……
+ }
+ 函数模板只是声明了一个函数的描述即模板，不是一个可以直接执行的函数，只有根据实际情况用实参的数据类型代替类型参数标识符之后，才能产生真正的函数。
+ (2)模板函数：
+ 模板函数的生成就是将函数模板的类型形参实例化的过程。
+ 例如：
+
+ double d;
+ int a;
+ fuc(d,a);
+ 则系统将用实参d的数据类型double去代替函数模板中的T生成函数：
+ 
+ double fuc(double x,int y)
+ {
+ double x;
+ //……
+ }
+ 
+ */
+#endif /* ConstantsPro2_pch */
